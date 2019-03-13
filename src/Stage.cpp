@@ -1537,7 +1537,6 @@ namespace soth
   testSolution( const VectorXd & /*solution*/ ) const
   {
     /* TODO: test solution is broken. Fix it! */
-    
     // VectorXd Ju = Jactive()*solution;
 
     // // SubMatrixXd Wr(W_,W.getRowIndices(),L.getRowIndices());

@@ -80,7 +80,7 @@ namespace soth
     /* --- The big one --- */
   public:
     //template< typename VectorGen >
-    void activeSearch( VectorXd & u );
+    int activeSearch( VectorXd & u );
 
     /* --- Tests --- */
   public:

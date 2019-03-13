@@ -9,7 +9,7 @@
 
 namespace soth
 {
-  
+
   HCOD::
   HCOD( Index inSizeProblem, Index nbStage )
   :
@@ -468,7 +468,7 @@ namespace soth
 	soth::sotDebugTrace::openFile(filename.c_str());
       }
 
-    isDebugOnce = ! keepOpen; 
+    isDebugOnce = ! keepOpen;
     sotDEBUG(15) << "Test trace"<<std::endl;
   }
 
@@ -491,7 +491,7 @@ namespace soth
 
     */
 
-  void HCOD::activeSearch( VectorXd & u )
+  int HCOD::activeSearch( VectorXd & u )
   {
     // if( isDebugOnce ) {  sotDebugTrace::openFile();  isDebugOnce = false; }
     // else { if(sotDEBUGFLOW.outputbuffer.good()) sotDebugTrace::closeFile(); }
@@ -574,7 +574,8 @@ namespace soth
 	      }
 	  }
 
-	if( iter>1000 ) throw 666;
+	// if( iter>1000 ) throw 666;
+  if( iter>100 ) {break;};
     } while(stageMinimal<=nbStages());
     sotDEBUG(5) << "Lagrange>=0, no downdate, active search completed." << std::endl;
     /*gettimeofday(&t2,NULL);
@@ -585,6 +586,7 @@ namespace soth
     u=solution;
     sotDEBUG(5) << "uf =" << (MATLAB)u << std::endl;
     sotDEBUGOUT(15);
+    return iter;
   }
 
 
@@ -720,4 +722,3 @@ namespace soth
 
 
 } // namespace soth
-
