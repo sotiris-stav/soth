@@ -22,7 +22,7 @@ namespace soth
     typedef MatrixXd::Index Index;
 
   public:
-    HCOD( Index sizeProblem, Index nbStage = 0, int num_iter = 100 );
+    HCOD( Index sizeProblem, Index nbStage = 0, double max_time = 0.0, int num_iter = 100 );
 
     void pushBackStage( const MatrixXd & J, const VectorBound & bounds );
     void pushBackStage( const Index & nr, const double * Jdata, const Bound * bdata );
@@ -112,6 +112,7 @@ namespace soth
     int freezedStages;
     bool isReset,isInit,isSolutionCpt,withDamp;
     int num_iter_;
+    double max_time_;
   };
 
 

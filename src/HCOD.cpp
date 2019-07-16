@@ -11,7 +11,7 @@ namespace soth
 {
 
   HCOD::
-  HCOD( Index inSizeProblem, Index nbStage, int num_iter )
+  HCOD( Index inSizeProblem, Index nbStage, double max_time, int num_iter )
   :
     sizeProblem(inSizeProblem)
     ,Y(sizeProblem)
@@ -19,7 +19,7 @@ namespace soth
     ,solution(sizeProblem)
     ,uNext(sizeProblem),Ytu(sizeProblem),YtuNext(sizeProblem),rho(sizeProblem)
     ,freezedStages(0)
-    ,isReset(false),isInit(false),isSolutionCpt(false),withDamp(false), num_iter_(num_iter)
+    ,isReset(false),isInit(false),isSolutionCpt(false),withDamp(false), num_iter_(num_iter), max_time_(max_time)
   {
 # ifndef NDEBUG
     //sotDebugTrace::openFile();
@@ -520,8 +520,8 @@ namespace soth
 	   && "new version of Eigen might have change the "
 	   "order of arguments in LinSpaced, please correct");
 
-    /*struct timeval t0,t1,t2;double time1,time2;
-    gettimeofday(&t0,NULL);*/
+    struct timeval t0,t1;double time2;
+    gettimeofday(&t0,NULL);
     initialize();
     sotDEBUG(5) << "Y= " << (MATLAB)Y.matrixExplicit<< std::endl;
     Y.computeExplicitly(); // TODO: this should be done automatically on Y size.
@@ -573,9 +573,10 @@ namespace soth
 
 	      }
 	  }
-
+    gettimeofday(&t1,NULL);
+    time2 = ((t1.tv_sec-t0.tv_sec)+(t1.tv_usec-t0.tv_usec)/1.0e6);
 	// if( iter>1000 ) throw 666;
-  if( iter>num_iter_ ) {break;};
+  if( (iter>num_iter_ && num_iter_ > 0 )|| (time2 > max_time_ && max_time_ > 0.0)) {break;};
     } while(stageMinimal<=nbStages());
     sotDEBUG(5) << "Lagrange>=0, no downdate, active search completed." << std::endl;
     /*gettimeofday(&t2,NULL);
