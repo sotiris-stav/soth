@@ -621,12 +621,12 @@ namespace Eigen
 
     EIGEN_INHERIT_ASSIGNMENT_OPERATORS(SubMatrix)
 
-    inline Scalar& coeffRef(Index row, Index col)
+    inline Scalar& coeffRef(Index row, Index col) const
     {
       return MemoryBase::m_matrix.const_cast_derived().coeffRef(this->rowIndex(row), this->colIndex(col));
     }
 
-    inline Scalar& coeffRef(Index index)
+    inline Scalar& coeffRef(Index index) const
     {
       return MemoryBase::m_matrix.const_cast_derived()
 	.coeffRef(ei_submatrix_index_helper<MatrixType, PermutationType>::index(this->rowIndex(index), this->colIndex(index)));
