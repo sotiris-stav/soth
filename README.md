@@ -8,14 +8,19 @@ soth
 
 Setup
 -----
-
-To compile this package, it is recommended to create a separate build
-directory:
-
-    mkdir _build
-    cd _build
-    cmake [OPTIONS] ..
-    make install
+mkdir ~/install_dir
+cd ~/install_dir
+git clone https://github.com/sotiris-stav/soth.git
+cd soth
+git checkout focal
+cd cmake
+git clone --depth 1 --branch before_setup_project_deprecation https://github.com/jrl-umi3218/jrl-cmakemodules ./
+cd ..
+mkdir _build
+cd _build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+sudo make install
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
 Please note that CMake produces a `CMakeCache.txt` file which should
 be deleted to reconfigure a package from scratch.
