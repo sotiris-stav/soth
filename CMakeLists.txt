@@ -4,13 +4,15 @@
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
+project(soth)
+SET(PROJECT_DESCRIPTION "...")
+
 INCLUDE(cmake/base.cmake)
 INCLUDE(cmake/boost.cmake)
 INCLUDE(cmake/cpack.cmake)
 INCLUDE(cmake/eigen.cmake)
 
-SET(PROJECT_NAME soth)
-SET(PROJECT_DESCRIPTION "...")
+
 SET(PROJECT_URL "http://github.com/laas/soth")
 
 # Disable -Werror on Unix for now.
@@ -49,7 +51,9 @@ ENDIF(SYS_TIME_H)
 # --- BOOST HEADER ---------------------------------------------------
 # Search for dependencies.
 # Boost
-SET(BOOST_COMPONENTS program_options signals)
+SET(BOOST_COMPONENTS program_options 
+#signals
+)
 SEARCH_FOR_BOOST()
 
 ADD_SUBDIRECTORY(src)

@@ -126,7 +126,9 @@ namespace Eigen
 	   int PermutationType,
 	   int rowsAtCompileTime=MatrixType::RowsAtCompileTime,
 	   int colsAtCompileTime=MatrixType::ColsAtCompileTime>
-  struct ei_submatrix_index_helper{};
+  struct ei_submatrix_index_helper{
+    static Index index(Index /*row*/, Index /*col*/);
+  };
 
   template<typename MatrixType, int rowsAtCompileTime, int colsAtCompileTime>
   struct ei_submatrix_index_helper<MatrixType, RowPermutation, rowsAtCompileTime, colsAtCompileTime>
