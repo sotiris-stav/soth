@@ -8,6 +8,7 @@ soth
 
 Setup
 -----
+```
 mkdir ~/install_dir
 cd ~/install_dir
 git clone https://github.com/sotiris-stav/soth.git
@@ -21,7 +22,7 @@ cd _build
 cmake -DCMAKE_BUILD_TYPE=Release ..
 sudo make install
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
-
+```
 Please note that CMake produces a `CMakeCache.txt` file which should
 be deleted to reconfigure a package from scratch.
 
